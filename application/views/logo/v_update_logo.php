@@ -10,7 +10,7 @@
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Nama Gereja</label>
                     <div class="col-sm-10">
-                        <input require type="text" class="form-control" value="<?= $logo->nama_gereja ?>" name="nama_gereja">
+                        <input require type="text" class="form-control" value="<?= $logo['nama_gereja'] ?>" name="nama_gereja">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -18,18 +18,18 @@
                     <div class="col-sm-10">
                         <div class="row">
                             <div class="col-sm-3">
-                                <img src="<?= base_url('assets/img/logo/') . $logo->logo; ?>" class="img-thumbnail" width="150px;">
+                                <img src="<?= base_url('assets/img/logo/') . $logo['logo']; ?>" class="img-thumbnail" width="150px;">
                             </div>
                             <div class="col-sm-9">
                                 <div class="custom-file">
-                                    <input type="file" name="userfile" class="custom-file-input" size="20" required />
+                                    <input type="file" name="userfile" class="custom-file-input" size="20" />
                                     <label class="custom-file-label" for="image">Choose file</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="id" value="<?= $logo->id ?>">
+                <input type="hidden" name="id" value="<?= $logo['id'] ?>">
 
                 <div class="form-group row justify-content-end">
                     <div class="col-sm-10">

@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('admin') ?>">
         <div class="sidebar-brand-icon">
-            <img src="<?= base_url('/assets/img/logo/LOGO GEREJA BAPTIS KLATEN1.png') ?>" class="img-circle elevation-2" width="40" height="43">
+            <img src="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" class="img-circle elevation-2" width="40" height="43">
         </div>
         <div class="sidebar-brand-text mx-3">Admin Page</div>
     </a>

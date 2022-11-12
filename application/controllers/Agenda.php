@@ -21,6 +21,7 @@ class Agenda extends CI_Controller
 
         $data['title'] = 'Data Agenda';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -33,6 +34,7 @@ class Agenda extends CI_Controller
     {
         $data['title'] = 'Form Tambah Agenda';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -77,6 +79,7 @@ class Agenda extends CI_Controller
         );
         $data['title'] = 'Form Update Agenda';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -95,23 +98,28 @@ class Agenda extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
-        } else {
-            $gambar = $this->upload->data();
-            $gambar = $gambar['file_name'];
-            $judul_warta = $this->input->post('judul_warta');
-            $jenis_warta = $this->input->post('jenis_warta');
-            $id = $this->input->post('kode_warta');
-            $data = array(
-                "judul_warta" => $judul_warta,
-                "jenis_warta" => $jenis_warta,
-                "gambar" => $gambar
+        $judul_warta = $this->input->post('judul_warta');
+        $jenis_warta = $this->input->post('jenis_warta');
+        $id = $this->input->post('kode_warta');
+        $data = array(
+            "judul_warta" => $judul_warta,
+            "jenis_warta" => $jenis_warta
+        );
 
-            );
-            $id = $this->ModelAgenda->update($id, $data);
-            redirect('agenda');
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['agenda']['gambar'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'gambar/agenda/' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('gambar', $new_image);
+        } else {
+            echo $this->upload->display_errors();
         }
+
+        $id = $this->ModelAgenda->update($id, $data);
+        redirect('agenda');
     }
     public function delete()
     {

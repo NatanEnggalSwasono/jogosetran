@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="custom-file">
-                                    <input type="file" name="userfile" class="custom-file-input" value="<?= $informasi->file ?>" size="20" required />
+                                    <input type="file" name="userfile" class="custom-file-input" value="<?= $informasi->file ?>" size="20" />
                                     <label class="custom-file-label" for="image">Choose file</label>
                                 </div>
                             </div>

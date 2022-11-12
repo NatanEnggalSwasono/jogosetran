@@ -24,6 +24,7 @@ class Galeri extends CI_Controller
 
     $data['title'] = 'Galeri';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['logo'] = $this->db->get('logo')->row_array();
 
     $this->load->view('template/header', $data);
     $this->load->view('template/sidebar', $data);
@@ -37,6 +38,7 @@ class Galeri extends CI_Controller
   {
     $data['title'] = 'Form Tambah Gambar';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['logo'] = $this->db->get('logo')->row_array();
 
     $this->load->view('template/header', $data);
     $this->load->view('template/sidebar', $data);
@@ -79,6 +81,7 @@ class Galeri extends CI_Controller
     );
     $data['title'] = 'Form Ubah Gambar';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+    $data['logo'] = $this->db->get('logo')->row_array();
 
     $this->load->view('template/header', $data);
     $this->load->view('template/sidebar', $data);

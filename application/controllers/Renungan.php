@@ -20,6 +20,7 @@ class Renungan extends CI_Controller
 
         $data['title'] = 'Data Renungan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -33,6 +34,7 @@ class Renungan extends CI_Controller
     {
         $data['title'] = 'Form Tambah Renungan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -79,6 +81,7 @@ class Renungan extends CI_Controller
         );
         $data['title'] = 'Form Ubah Renungan';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -97,24 +100,30 @@ class Renungan extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
+        $judul_renungan = $this->input->post('judul_renungan');
+        $isi_renungan = $this->input->post('isi_renungan');
+        $tanggal_renungan = $this->input->post('tanggal_renungan');
+        $id = $this->input->post('id_renungan');
+        $data = array(
+            "judul_renungan" => $judul_renungan,
+            "isi_renungan" => $isi_renungan,
+            "tanggal_renungan" => $tanggal_renungan
+        );
+
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['renungan']['gambar_renungan'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'gambar/renungan/' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('gambar_renungan', $new_image);
         } else {
-            $gambar = $this->upload->data();
-            $gambar = $gambar['file_name'];
-            $judul_renungan = $this->input->post('judul_renungan');
-            $isi_renungan = $this->input->post('isi_renungan');
-            $tanggal_renungan = $this->input->post('tanggal_renungan');
-            $id = $this->input->post('id_renungan');
-            $data = array(
-                "judul_renungan" => $judul_renungan,
-                "isi_renungan" => $isi_renungan,
-                "tanggal_renungan" => $tanggal_renungan,
-                "gambar_renungan" => $gambar
-            );
-            $id = $this->ModelRenungan->update($id, $data);
-            redirect('renungan');
+            echo $this->upload->display_errors();
         }
+
+        $id = $this->ModelRenungan->update($id, $data);
+        redirect('renungan');
     }
 
     public function delete()

@@ -21,6 +21,7 @@ class Informasi extends CI_Controller
 
         $data['title'] = 'Data Informasi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -34,6 +35,7 @@ class Informasi extends CI_Controller
     {
         $data['title'] = 'Form Add Informasi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -78,6 +80,7 @@ class Informasi extends CI_Controller
         );
         $data['title'] = 'Form Update Informasi';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -93,24 +96,30 @@ class Informasi extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
+        $judul_informasi = $this->input->post('judul_informasi');
+        $isi_informasi = $this->input->post('isi_informasi');
+        $tanggal_informasi = $this->input->post('tanggal_informasi');
+        $id = $this->input->post('id_informasi');
+        $data = array(
+            "judul_informasi" => $judul_informasi,
+            "isi_informasi" => $isi_informasi,
+            "tanggal_informasi" => $tanggal_informasi
+        );
+
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['informasi']['file'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'assets/file/' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('file', $new_image);
         } else {
-            $file = $this->upload->data();
-            $file = $file['file_name'];
-            $judul_informasi = $this->input->post('judul_informasi');
-            $isi_informasi = $this->input->post('isi_informasi');
-            $tanggal_informasi = $this->input->post('tanggal_informasi');
-            $id = $this->input->post('id_informasi');
-            $data = array(
-                "judul_informasi" => $judul_informasi,
-                "isi_informasi" => $isi_informasi,
-                "tanggal_informasi" => $tanggal_informasi,
-                "file" => $file
-            );
-            $id = $this->ModelInformasi->update($id, $data);
-            redirect('informasi');
+            echo $this->upload->display_errors();
         }
+
+        $id = $this->ModelInformasi->update($id, $data);
+        redirect('informasi');
     }
 
     public function delete()

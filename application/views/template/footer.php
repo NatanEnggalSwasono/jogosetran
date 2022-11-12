@@ -4,6 +4,9 @@
         <div class="copyright text-center my-auto">
             <span>Copyright &copy; GBI Jogosetran <?= date('Y'); ?></span>
         </div>
+        <div class="copyright text-right my-auto">
+            Developed by KELOMPOK PPL 14 <a href="https://ukrim.ac.id/">UKRIM UNIVERSITY</a>
+        </div>
     </div>
 </footer>
 <!-- End of Footer -->

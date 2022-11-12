@@ -21,6 +21,7 @@ class Logo extends CI_Controller
 
         $data['title'] = 'Logo';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -34,6 +35,7 @@ class Logo extends CI_Controller
     {
         $data['title'] = 'Form Add Logo';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -74,6 +76,7 @@ class Logo extends CI_Controller
         );
         $data['title'] = 'Form Update logo';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -89,20 +92,25 @@ class Logo extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
+        $nama_gereja = $this->input->post('nama_gereja');
+        $id = $this->input->post('id');
+        $data = array(
+            "nama_gereja" => $nama_gereja
+        );
+
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['logo']['logo'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'assets/img/logo/' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('logo', $new_image);
         } else {
-            $logo = $this->upload->data();
-            $logo = $logo['file_name'];
-            $nama_gereja = $this->input->post('nama_gereja');
-            $id = $this->input->post('id');
-            $data = array(
-                "nama_gereja" => $nama_gereja,
-                "logo" => $logo
-            );
-            $id = $this->ModelLogo->update($id, $data);
-            redirect('logo');
+            echo $this->upload->display_errors();
         }
+        $id = $this->ModelLogo->update($id, $data);
+        redirect('logo');
     }
 
     public function delete()

@@ -18,6 +18,8 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Login Page';
+            $data['logo'] = $this->db->get('logo')->row_array();
+
             $this->load->view('template/auth_header', $data);
             $this->load->view('auth/login');
             $this->load->view('template/auth_footer');
@@ -81,6 +83,8 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'User Registration Page';
+            $data['logo'] = $this->db->get('logo')->row_array();
+
             $this->load->view('template/auth_header', $data);
             $this->load->view('auth/registration');
             $this->load->view('template/auth_footer');

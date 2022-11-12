@@ -16,6 +16,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Dashboard Admin';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -28,6 +29,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Edit Profile';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->form_validation->set_rules('name', 'Full name', 'required|trim');
 
@@ -77,6 +79,7 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Ubah Password';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[5]|matches[new_password2]');

@@ -10,8 +10,8 @@
   <meta content="" name="keywords" />
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon" />
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" rel="icon" />
+  <link href="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" rel="icon" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
@@ -166,11 +166,8 @@
       <div class="container">
         <div class="section-title" data-aos="zoom-in">
           <h2>Informasi</h2>
-          <h3>Apa Informasi <span>GBI Jogosetran</span>?</h3>
-          <p>
-            Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.
-          </p>
+          <h3>Informasi <span>GBI Jogosetran</span></h3>
+
         </div>
 
         <div class="row">
@@ -225,10 +222,6 @@
         <div class="section-title" data-aos="zoom-in" style="color: #fff;">
           <h2>Agenda</h2>
           <h3>Agenda <span>GBI Jogosetran</span></h3>
-          <p>
-            Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.
-          </p>
         </div>
 
         <div class="row">
@@ -272,11 +265,8 @@
       <div class="container">
         <div class="section-title" data-aos="zoom-in">
           <h2>Galeri</h2>
-          <h3>Check our <span>Galeri</span></h3>
-          <p>
-            Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.
-          </p>
+          <h3>Galeri <span>GBI Jogosetran</span></h3>
+
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
@@ -363,13 +353,9 @@
     <!-- ======= Team Section ======= -->
     <section id="team" class="team" style="background-color: #1b1e23;">
       <div class="container">
-        <div class="section-title" data-aos="zoom-in">
+        <div class="section-title" data-aos="zoom-in" style="color: #fff;">
           <h2>Renungan</h2>
           <h3>Renungan Harian <span>GBI Jogosetran</span></h3>
-          <p>
-            Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.
-          </p>
         </div>
 
         <div class="row">
@@ -505,12 +491,9 @@
     <section id="contact" class="contact">
       <div class="container">
         <div class="section-title" data-aos="zoom-in">
-          <h2>Contact</h2>
-          <h3>Check our <span>Contact</span> Details</h3>
-          <p>
-            Ut possimus qui ut temporibus culpa velit eveniet modi omnis est
-            adipisci expedita at voluptas atque vitae autem.
-          </p>
+          <h2>Kontak</h2>
+          <h3>Check Detail <span>Kontak</span> Kami</h3>
+
         </div>
 
         <div>
@@ -522,7 +505,7 @@
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
+                <h4>Lokasi:</h4>
                 <p><?= $kontak['alamat'] ?></p>
               </div>
 
@@ -534,7 +517,7 @@
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
+                <h4>Telepon:</h4>
                 <p><?= $kontak['no_telepon'] ?></p>
               </div>
             </div>
@@ -551,37 +534,49 @@
     <div class="footer-top">
       <div class="container">
         <div class="row justify-content-center">
-          <h3>GBI Jogosetran</h3>
-          <div class="col-lg-4" style="padding-top: 25px;">
-            <p style="font-size: 20px;">Jadwal Ibadah</p>
-            <div class="jadwal-ibadah" style="text-align: left;">
-              <p>
-                <?php
-                $no = 1;
-                foreach ($jadwal as $r) {
-                ?>
-                  <li>
-                    <a href="<?= base_url('web_jadwal'); ?>">
-                      <?= $r['nama_ibadah'] ?><span>, <?= $r['tanggal'] ?></span><span> - <?= $r['waktu'] ?></span>
-                    </a>
-                  </li>
-                <?php
-                }
-                ?>
-              </p>
+          <h3 style="margin-top: -20px;">GBI Jogosetran</h3>
+          <div class="col-lg-4" style="padding-top: 35px;">
+            <h4>Jadwal Ibadah</h4>
+            <div class="container footer-bottom clearfix">
+              <div class="jadwal-ibadah" style="text-align: left;">
+                <p>
+                  <?php
+                  $no = 1;
+                  foreach ($jadwal as $r) {
+                  ?>
+                    <li>
+                      <?= $r['tanggal'] ?></span><span> pukul <?= $r['waktu'] ?></span> - <?= $r['nama_ibadah'] ?><span>
+                    </li>
+                  <?php
+                  }
+                  ?>
+                </p>
+              </div>
             </div>
           </div>
-          <div class=" col-lg-4">
-          </div>
-          <div class="col-lg-4" style="padding-top: 25px;">
-            <p style="font-size: 20px;">Social Media</p>
-            <div class=" social-links">
-              <a href="<?= $social_media['twitter'] ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="<?= $social_media['facebook'] ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="<?= $social_media['instagram'] ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="<?= $social_media['website'] ?>" class="google-plus"><i class="bx bx-world"></i></a>
+          <div class="col-lg-4" style="padding-top: 35px;">
+            <h4>Kontak</h4>
+            <div class="container footer-bottom clearfix">
+              <div class="social-links" style="text-align: left;">
+                <p><i class='bx bxs-map'></i><span style="font-weight: bolder;"> Alamat:</span></p>
+                <?= $kontak['alamat'] ?>
+                <p><i class='bx bx-envelope'></i><span style="font-weight: bolder;"> Email:</span></p>
+                <?= $kontak['email'] ?>
+                <p><i class='bx bx-mobile-alt'></i><span style="font-weight: bolder;"> Telepon:</span></p>
+                <?= $kontak['no_telepon'] ?>
+              </div>
             </div>
-
+          </div>
+          <div class="col-lg-4" style="padding-top: 35px;">
+            <h4>Social Media</h4>
+            <div class="container footer-bottom clearfix">
+              <div class=" social-links">
+                <a href="<?= $social_media['twitter'] ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="<?= $social_media['facebook'] ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="<?= $social_media['instagram'] ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="<?= $social_media['website'] ?>" class="google-plus"><i class="bx bx-world"></i></a>
+              </div>
+            </div>
           </div>
 
         </div>

@@ -20,6 +20,7 @@ class Pendeta extends CI_Controller
 
         $data['title'] = 'Data Pendeta';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -33,6 +34,7 @@ class Pendeta extends CI_Controller
     {
         $data['title'] = 'Form Tambah Pendeta';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -77,6 +79,7 @@ class Pendeta extends CI_Controller
         );
         $data['title'] = 'Form Ubah Data Pendeta';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -95,22 +98,28 @@ class Pendeta extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
+        $nama_pendeta = $this->input->post('nama_pendeta');
+        $background_pendeta = $this->input->post('background_pendeta');
+        $id = $this->input->post('id_pendeta');
+        $data = array(
+            "nama_pendeta" => $nama_pendeta,
+            "background_pendeta" => $background_pendeta
+        );
+
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['pendeta']['foto_pendeta'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'gambar/pendeta/' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('foto_pendeta', $new_image);
         } else {
-            $foto_pendeta = $this->upload->data();
-            $foto_pendeta = $foto_pendeta['file_name'];
-            $nama_pendeta = $this->input->post('nama_pendeta');
-            $background_pendeta = $this->input->post('background_pendeta');
-            $id = $this->input->post('id_pendeta');
-            $data = array(
-                "nama_pendeta" => $nama_pendeta,
-                "background_pendeta" => $background_pendeta,
-                "foto_pendeta" => $foto_pendeta
-            );
-            $id = $this->ModelPendeta->update($id, $data);
-            redirect('pendeta');
+            echo $this->upload->display_errors();
         }
+
+        $id = $this->ModelPendeta->update($id, $data);
+        redirect('pendeta');
     }
 
     public function delete()

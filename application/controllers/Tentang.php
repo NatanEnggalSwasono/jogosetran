@@ -20,6 +20,7 @@ class Tentang extends CI_Controller
 
         $data['title'] = 'Data Tentang Gereja';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -33,6 +34,7 @@ class Tentang extends CI_Controller
     {
         $data['title'] = 'Form Tambah Tentang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -61,6 +63,7 @@ class Tentang extends CI_Controller
         );
         $data['title'] = 'Form Ubah Tentang';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);

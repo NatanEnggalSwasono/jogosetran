@@ -10,7 +10,7 @@
                         <div class="col-lg">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <img src="<?= base_url('/assets/img/logo/LOGO GEREJA BAPTIS KLATEN1.png') ?>" width="140" height="143">
+                                    <img src="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" width="140" height="143">
                                 </div><br>
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4" style="font-family: cambria; font-weight: bold;">Create an Account</h1>

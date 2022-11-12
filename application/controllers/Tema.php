@@ -20,6 +20,7 @@ class Tema extends CI_Controller
 
         $data['title'] = 'Data Tema';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -33,6 +34,7 @@ class Tema extends CI_Controller
     {
         $data['title'] = 'Form Tambah Tema';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -77,6 +79,7 @@ class Tema extends CI_Controller
         );
         $data['title'] = 'Form Ubah Tema';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['logo'] = $this->db->get('logo')->row_array();
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);
@@ -95,22 +98,28 @@ class Tema extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('userfile')) {
-            echo "Gagal Dikirim";
+        $judul = $this->input->post('judul');
+        $tema = $this->input->post('tema');
+        $id = $this->input->post('id_tema');
+        $data = array(
+            "judul" => $judul,
+            "tema" => $tema
+        );
+
+        if ($this->upload->do_upload('userfile')) {
+            $old_image = $data['tema']['gambar'];
+            if ($old_image != 'default.png') {
+                unlink(FCPATH . 'assets/img/tema' . $old_image);
+            }
+
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('gambar', $new_image);
         } else {
-            $gambar = $this->upload->data();
-            $gambar = $gambar['file_name'];
-            $judul = $this->input->post('judul');
-            $tema = $this->input->post('tema');
-            $id = $this->input->post('id_tema');
-            $data = array(
-                "judul" => $judul,
-                "tema" => $tema,
-                "gambar" => $gambar
-            );
-            $id = $this->ModelTema->update($id, $data);
-            redirect('tema');
+            echo $this->upload->display_errors();
         }
+
+        $id = $this->ModelTema->update($id, $data);
+        redirect('tema');
     }
 
     public function delete()

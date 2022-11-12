@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="custom-file">
-                                    <input type="file" name="userfile" class="custom-file-input" value="<?= $agenda->gambar ?>" required />
+                                    <input type="file" name="userfile" class="custom-file-input" value="<?= $agenda->gambar ?>" />
                                     <label class="custom-file-label" for="image">Choose file</label>
                                 </div>
                             </div>
