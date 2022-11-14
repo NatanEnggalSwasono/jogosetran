@@ -58,7 +58,7 @@
 
       <img src="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" style="max-height: 50px;" />
       <div class="logo">
-        <h1 class="text-light"><a href="web_profile"><?= $logo['nama_gereja'] ?></a></h1>
+        <h1 class="text-light"><a href="Web_Profile"><?= $logo['nama_gereja'] ?></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -177,7 +177,7 @@
           ?>
             <div class="col-lg-4  mt-4 mt-lg-0">
               <div class="box" data-aos="fade-up">
-                <a href="<?= site_url("web_informasi/view/$i[id_informasi]") ?>"><span><?= $i['judul_informasi'] ?></span></a>
+                <a href="<?= site_url("Web_Informasi/view/$i[id_informasi]") ?>"><span><?= $i['judul_informasi'] ?></span></a>
                 <h4><?= $i['tanggal_informasi'] ?></h4>
                 <p>
                   <?= substr($i['isi_informasi'], 0, 60) ?>
@@ -192,7 +192,7 @@
         </div>
       </div>
       <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-        <a href="<?= base_url('web_informasi'); ?>">
+        <a href="<?= base_url('Web_Informasi'); ?>">
           <h2>Selengkapnya</h2>
         </a>
       </div>
@@ -240,7 +240,7 @@
                 <!--<div class="icon">
                   <i class="bx bxl-dribbble"></i>
                 </div>-->
-                <h4><a href="<?= site_url("web_agenda/view/$i[kode_warta]") ?>"><?= $i['judul_warta'] ?></a></h4>
+                <h4><a href="<?= site_url("Web_Agenda/view/$i[kode_warta]") ?>"><?= $i['judul_warta'] ?></a></h4>
                 <p>
                   <?= substr($i['jenis_warta'], 0, 60) ?>
                 </p>
@@ -253,7 +253,7 @@
         </div>
       </div>
       <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-        <a href="<?= base_url('web_agenda'); ?>">
+        <a href="<?= base_url('Web_Agenda'); ?>">
           <h2>Selengkapnya</h2>
         </a>
       </div>
@@ -342,7 +342,7 @@
           ?>
         </div>
         <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-          <a href="<?= base_url('web_galeri'); ?>">
+          <a href="<?= base_url('Web_Galeri'); ?>">
             <h2>Selengkapnya</h2>
           </a>
         </div>
@@ -366,10 +366,10 @@
             <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
               <div class="member" data-aos="fade-up">
                 <div class="member-img">
-                  <a href="<?= base_url("web_renungan/view/$r[id_renungan]"); ?>"><img src="<?= base_url('/gambar/renungan/') . $r['gambar_renungan'] ?>" class="img-fluid" alt="" /></a>
+                  <a href="<?= base_url("Web_Renungan/view/$r[id_renungan]"); ?>"><img src="<?= base_url('/gambar/renungan/') . $r['gambar_renungan'] ?>" class="img-fluid" alt="" /></a>
                 </div>
                 <div class="member-info">
-                  <a href="<?= base_url("web_renungan/view/$r[id_renungan]"); ?>">
+                  <a href="<?= base_url("Web_Renungan/view/$r[id_renungan]"); ?>">
                     <h4><?= $r['judul_renungan'] ?></h4>
                   </a>
                   <span><?= $r['tanggal_renungan'] ?></span>
@@ -383,7 +383,7 @@
         </div>
       </div>
       <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-        <a href="<?= base_url('web_renungan'); ?>">
+        <a href="<?= base_url('Web_Renungan'); ?>">
           <h2>Selengkapnya</h2>
         </a>
       </div>

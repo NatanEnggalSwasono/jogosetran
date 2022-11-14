@@ -20,12 +20,12 @@
                         <!--<div class="icon">
                   <i class="bx bxl-dribbble"></i>
                 </div>-->
-                        <h4><a href="<?= site_url("web_agenda/view/$b->kode_warta") ?>"><?= $b->judul_warta ?></a></h4>
+                        <h4><a href="<?= site_url("Web_Agenda/view/$b->kode_warta") ?>"><?= $b->judul_warta ?></a></h4>
                         <p>
                             <?= substr($b->jenis_warta, 0, 60) ?>
                         </p>
                         <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-                            <a href="<?= site_url("web_agenda/view/$b->kode_warta") ?>">
+                            <a href="<?= site_url("Web_Agenda/view/$b->kode_warta") ?>">
                                 <h2>Selengkapnya</h2>
                             </a>
                         </div>

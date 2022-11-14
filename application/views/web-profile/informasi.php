@@ -23,7 +23,7 @@
               <?= substr($i->isi_informasi, 0, 60) ?>
             </p>
             <div class="section-title" data-aos="zoom-in" style="margin-top: 20px; margin-bottom: -50px;">
-              <a href="<?= site_url("web_informasi/view/$i->id_informasi") ?>">
+              <a href="<?= site_url("Web_Informasi/view/$i->id_informasi") ?>">
                 <h2>Selengkapnya</h2>
               </a>
             </div>

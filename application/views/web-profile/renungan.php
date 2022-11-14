@@ -18,10 +18,10 @@
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                     <div class="member" data-aos="fade-up">
                         <div class="member-img">
-                            <a href="<?= base_url("web_renungan/view/$r->id_renungan"); ?>"><img src="<?= base_url("/gambar/renungan/$r->gambar_renungan") ?> " class="img-fluid"></a>
+                            <a href="<?= base_url("Web_Renungan/view/$r->id_renungan"); ?>"><img src="<?= base_url("/gambar/renungan/$r->gambar_renungan") ?> " class="img-fluid"></a>
                         </div>
                         <div class="member-info">
-                            <a href="<?= base_url("web_renungan/view/$r->id_renungan"); ?>">
+                            <a href="<?= base_url("Web_Renungan/view/$r->id_renungan"); ?>">
                                 <h4><?= $r->judul_renungan ?></h4>
                             </a>
                             <span><?= $r->tanggal_renungan ?></span>
