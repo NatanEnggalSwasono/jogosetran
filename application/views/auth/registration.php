@@ -13,7 +13,7 @@
                                     <img src="<?= base_url('assets/img/logo/') . $logo['logo'] ?>" width="140" height="143">
                                 </div><br>
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4" style="font-family: cambria; font-weight: bold;">Create an Account</h1>
+                                    <h1 class="h4 text-gray-900 mb-4" style="font-family: cambria; font-weight: bold;">Buat Akun Baru</h1>
                                 </div>
                                 <form class="user" method="POST" action="<?= base_url('auth/registration') ?>">
                                     <div class="form-group">

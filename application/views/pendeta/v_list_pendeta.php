@@ -57,7 +57,7 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($pendetas as $p) {
+                        foreach (array_reverse($pendetas) as $p) {
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

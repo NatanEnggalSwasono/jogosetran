@@ -56,7 +56,7 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($logos as $i) {
+                        foreach (array_reverse($logos) as $i) {
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

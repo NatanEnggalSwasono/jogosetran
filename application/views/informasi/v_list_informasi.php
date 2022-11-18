@@ -59,7 +59,7 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($informasis as $i) {
+                        foreach (array_reverse($informasis) as $i) {
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

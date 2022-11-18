@@ -101,7 +101,7 @@
                     <div class="row">
                         <?php
                         $no = 1;
-                        foreach ($galeris as $g) {
+                        foreach (array_reverse($galeris) as $g) {
                         ?>
                             <div class="col-lg-3 mt-4 col-md-6 d-flex align-items-stretch">
                                 <div class="member" data-aos="fade-up">

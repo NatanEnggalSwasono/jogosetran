@@ -57,7 +57,7 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($kontaks as $k) {
+                        foreach (array_reverse($kontaks) as $k) {
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

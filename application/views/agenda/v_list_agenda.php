@@ -58,7 +58,7 @@
                     <tbody>
                         <?php
                         $no = 1;
-                        foreach ($barangs as $b) {
+                        foreach (array_reverse($barangs) as $b) {
                         ?>
                             <tr>
                                 <td><?= $no++ ?></td>

@@ -47,7 +47,7 @@ class Informasi extends CI_Controller
     public function insert()
     {
         $config['upload_path']          = './assets/file/';
-        $config['allowed_types']        = 'pdf';
+        $config['allowed_types']        = 'pdf|docx|xlsx|pptx';
 
         $this->load->library('upload', $config);
 
@@ -92,7 +92,7 @@ class Informasi extends CI_Controller
     public function update()
     {
         $config['upload_path']          = './assets/file/';
-        $config['allowed_types']        = 'pdf';
+        $config['allowed_types']        = 'pdf|docx|xlsx|pptx';
 
         $this->load->library('upload', $config);
 
